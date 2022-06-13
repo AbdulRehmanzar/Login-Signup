@@ -1,7 +1,9 @@
+// ignore: unused_import
 import 'package:email_password_login/screens/home_screen.dart';
 import 'package:email_password_login/screens/registration_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+// ignore: unused_import
 import 'package:fluttertoast/fluttertoast.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -20,6 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController passwordController = TextEditingController();
 
 //     firebase
+  // ignore: unused_field
   final _auth = FirebaseAuth.instance;
 
   @override
@@ -156,18 +159,34 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
 // login fuction
-  void signIn(String email, String password) async {
-    if (_formKey.currentState!.validate()) {
-      await _auth
-          .signInWithEmailAndPassword(email: email, password: password)
-          .then((uid) => {
-                Fluttertoast.showToast(msg: "Login Successful"),
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => const HomeScreen())),
-              })
-          .catchError((e) {
-        Fluttertoast.showToast(msg: e!.message);
-      });
+  // void signIn(email, password) async {
+  //   if (_formKey.currentState!.validate()) {
+  //     await _auth
+  //         .signInWithEmailAndPassword(email: email, password: password)
+  //         .then((uid) => {
+  //               Fluttertoast.showToast(msg: "Login Successful"),
+  //               Navigator.of(context).pushReplacement(MaterialPageRoute(
+  //                   builder: (context) => const HomeScreen())),
+  //             })
+  //         .catchError((e) {
+  //       Fluttertoast.showToast(msg: e!.message);
+  //     });
+  //   }
+  // }
+
+  void signIn(email, password) async {
+    try {
+      // ignore: unused_local_variable
+      UserCredential userCredential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        // ignore: avoid_print
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        // ignore: avoid_print
+        print('Wrong password provided for that user.');
+      }
     }
   }
 }

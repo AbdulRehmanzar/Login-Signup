@@ -54,5 +54,42 @@
       });
     });
   </script>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // const firebaseConfig = {
+  //   apiKey: "AIzaSyA5dlorYoquBc_zSw5DVdx-vn71lpXcMKg",
+  //   authDomain: "flutter-we-4b685.firebaseapp.com",
+  //   projectId: "flutter-we-4b685",
+  //   storageBucket: "flutter-we-4b685.appspot.com",
+  //   messagingSenderId: "837842426916",
+  //   appId: "1:837842426916:web:9214fe2121b388e44a0cb1"
+  // };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+</script>
+<script src="https://www.gstatic.com/firebasejs/9.8.3/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.8.3/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.8.3/firebase-analytics.js"></script>
+<script>
+  firebaseConfig = {
+  apiKey: "AIzaSyA5dlorYoquBc_zSw5DVdx-vn71lpXcMKg",
+  authDomain: "flutter-we-4b685.firebaseapp.com",
+  projectId: "flutter-we-4b685",
+  storageBucket: "flutter-we-4b685.appspot.com",
+  messagingSenderId: "837842426916",
+  appId: "1:837842426916:web:9214fe2121b388e44a0cb1"
+};
+
+
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
+
+</script>
 </body>
 </html>
